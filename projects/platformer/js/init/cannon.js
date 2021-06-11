@@ -27,8 +27,38 @@
         // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
         
         // example: 
-        createCannon("top", 450);
-        
+
+        //Group 1:
+
+        createCannon("top", 500);
+        createCannon("top", 7);  //-\.  Distance is 55 units of hallebot horizontally.
+        createCannon("top", 62); //-/   Hallebot is wider when she is squatting/crouching.
+        createCannon("top", 117);  
+        createCannon("top", 172);
+        createCannon("top", 227);
+        createCannon("top", 282);
+
+        //Group 2:
+
+        var delay = 1000
+
+        createCannon("top", 7,delay);  //-\.  Distance is 55 units of hallebot horizontally.
+        createCannon("top", 62,delay); //-/   Hallebot is wider when she is squatting/crouching.
+        createCannon("top", 117,delay);  
+        createCannon("top", 172,delay);
+        createCannon("top", 227,delay);
+        createCannon("top", 282,delay);
+
+        createCannon("bottom", 740);
+        createCannon("bottom", 740, 3000);
+
+        createCannon("bottom", 810)
+        createCannon("bottom", 810, 3000);   
+
+        createCannon("top", 5);  
+       
+
+    
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
