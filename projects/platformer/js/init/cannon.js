@@ -47,7 +47,7 @@
         createCannon("top", 117,delay);  
         createCannon("top", 172,delay);
         createCannon("top", 227,delay);
-        createCannon("top", 282,delay);
+        createCannon("top", 282,delay)
 
         createCannon("bottom", 740);
         createCannon("bottom", 740, 3000);
@@ -56,9 +56,17 @@
         createCannon("bottom", 810, 3000);   
 
         createCannon("top", 5);  
-       
 
-    
+        //Group 3:
+
+        var delay2= 1500
+
+        createCannon("top", 7,delay2);
+        createCannon("top", 62,delay2); 
+        createCannon("top", 117,delay2);  
+        createCannon("top", 172,delay2);
+        createCannon("top", 227,delay2);
+        createCannon("top", 282,delay2);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
