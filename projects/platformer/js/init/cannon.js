@@ -31,23 +31,23 @@
         //Group 1:
 
         createCannon("top", 500);
-        createCannon("top", 7);  //-\.  Distance is 55 units of hallebot horizontally.
-        createCannon("top", 62); //-/   Hallebot is wider when she is squatting/crouching.
-        createCannon("top", 117);  
-        createCannon("top", 172);
-        createCannon("top", 227);
-        createCannon("top", 282);
+        createCannon("top", 7);  //--\  Distance is 55 units of hallebot horizontally.
+        createCannon("top", 64); //---| Hallebot is wider when she is squatting/crouching.
+        createCannon("top", 119);//--/  (Although I increased the interval by 2px per value)
+        createCannon("top", 174);
+        createCannon("top", 229);
+        createCannon("top", 284);
 
         //Group 2:
 
         var delay = 1000
 
         createCannon("top", 7,delay);  //-\.  Distance is 55 units of hallebot horizontally.
-        createCannon("top", 62,delay); //-/   Hallebot is wider when she is squatting/crouching.
-        createCannon("top", 117,delay);  
-        createCannon("top", 172,delay);
-        createCannon("top", 227,delay);
-        createCannon("top", 282,delay)
+        createCannon("top", 64,delay); //-/   Hallebot is wider when she is squatting/crouching.
+        createCannon("top", 119,delay);  
+        createCannon("top", 174,delay);
+        createCannon("top", 229,delay);
+        createCannon("top", 284,delay)
 
         createCannon("bottom", 740);
         createCannon("bottom", 740, 3000);
@@ -62,11 +62,11 @@
         var delay2= 1500
 
         createCannon("top", 7,delay2);
-        createCannon("top", 62,delay2); 
-        createCannon("top", 117,delay2);  
-        createCannon("top", 172,delay2);
-        createCannon("top", 227,delay2);
-        createCannon("top", 282,delay2);
+        createCannon("top", 64,delay2); 
+        createCannon("top", 119,delay2);  
+        createCannon("top", 174,delay2);
+        createCannon("top", 229,delay2);
+        createCannon("top", 284,delay2);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
