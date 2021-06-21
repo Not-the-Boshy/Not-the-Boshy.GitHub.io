@@ -61,17 +61,18 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
+			var positionX=20
+			var nyoomPower=10   //<- The "Speed" variable
+			var points=0
 
-			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				moveBoxTo(posX);
-				posX=posX+40
+				positionX+=nyoomPower;
+				moveBoxTo(positionX);
 			};
 
 			/* 
@@ -79,9 +80,10 @@
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
-			function handleBoxClick() {
-				posX=20
-				points=points+1
+			function handleBoxClick()
+				positionX=0
+				nyoomPower+=5;
+				points=points+1;
 				changeBoxText(points)
 			};
 		})();
