@@ -71,7 +71,7 @@
 			turn it around! 
 			*/
 			function update() {
-				positionX+= nyoomPower;
+				positionX = positionX + nyoomPower;
 				moveBoxTo(positionX);
 			};
 
@@ -84,8 +84,9 @@
 				positionX=20;
 				points++
 				changeBoxText(points)
+				nyoomPower+=5;
 			}
-		)
+		})
 	</script>
 </body>
 </html>
