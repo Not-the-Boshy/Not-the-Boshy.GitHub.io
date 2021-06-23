@@ -71,8 +71,11 @@
 			turn it around! 
 			*/
 			function update() {
-				positionX = positionX + nyoomPower;
+				positionX +=nyoomPower;
 				moveBoxTo(positionX);
+				if (positionX>Math. abs(boardWidth) || positionX < 0){
+					nyoomPower= nyoomPower*-1
+				}
 			};
 
 			/* 
@@ -84,9 +87,14 @@
 				positionX=20;
 				points++
 				changeBoxText(points)
-				nyoomPower+=5;
+				if (nyoomPower<0){
+					nyoomPower-=2;
+				}
+				else {
+					nyoomPower+=2
+				}
 			}
-		})
+		})();
 	</script>
 </body>
 </html>
