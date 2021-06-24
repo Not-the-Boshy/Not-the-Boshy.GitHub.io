@@ -25,7 +25,7 @@
 </head>
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box">?</div>
+	<div class="box" id= gameOverChange>?</div>
 
 	<script>
 		(function(){
@@ -109,7 +109,8 @@
 				}
 				if (strikeOut===3){
 					nyoomPower= 0;
-
+					positionX= (boardWidth/2)
+					document.getElementById("gameOverChange").innerHTML = ":(";
 				}
 			}
 		})();
