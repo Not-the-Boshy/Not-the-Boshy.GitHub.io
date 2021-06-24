@@ -56,10 +56,9 @@
 				box.text(newText);
 			}
 
-			//Added by Shivom: Game Over function for 20 misclicks.
-			function gameOver(){
-				clearInterval(interval);
-			}
+			//Added by me: board click detection and handleBoardClick function for a misclick
+			board.on('click', handleBoardClick);
+
 			//////////////////////////////////////////////////////////////////
 			/////////////////// YOUR CODE BELOW HERE /////////////////////////
 			//////////////////////////////////////////////////////////////////
@@ -70,7 +69,7 @@
 			var points=0;
 
 			var misclicks= 0;    //<- # of misclicks for an end to the game
-
+			var strikeOut= 0;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -98,6 +97,19 @@
 				}
 				else {
 					nyoomPower+=2
+				}
+			}
+
+			function handleBoardClick() {
+				misclick++
+				if(misclick >=20){
+					clearInterval(interval)
+					misclick=0
+					strikeOut++;
+				}
+				if (strikeOut===3){
+					nyoomPower= 0;
+
 				}
 			}
 		})();
