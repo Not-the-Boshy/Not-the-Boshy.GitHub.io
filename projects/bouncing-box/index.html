@@ -25,7 +25,7 @@
 </head>
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box" id= gameOverChange>?</div>
+	<div class="box" id= gameOverChange>0</div>
 
 	<script>
 		(function(){
@@ -68,7 +68,7 @@
 			var nyoomPower=10;   //<- The "Speed" variable
 			var points=0;
 
-			var misclicks= 0;    //<- # of misclicks for an end to the game
+			var misclick= 0;    //<- # of misclicks for an end to the game
 			var strikeOut= 0;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -103,14 +103,20 @@
 			function handleBoardClick() {
 				misclick++
 				if(misclick >=20){
-					clearInterval(interval)
-					misclick=0
+					points=0
+					changeBoxText(points)
+					nyoomPower=10;
+					misclick=0;
 					strikeOut++;
+					positionX=20
 				}
 				if (strikeOut===3){
-					nyoomPower= 0;
 					positionX= (boardWidth/2)
-					document.getElementById("gameOverChange").innerHTML = ":(";
+					nyoomPower= 0;
+					points= NaN
+					changeBoxText(":(")
+					clearInterval(interval)
+					;
 				}
 			}
 		})();
