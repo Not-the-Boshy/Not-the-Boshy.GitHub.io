@@ -82,10 +82,10 @@ var init = function (window) {
         var leftEdge = circle.x - circle.radius;
         var topEdge = circle.y + circle.radius;
         var lowerEdge = circle.y - circle.radius;
+        
         game.checkCirclePosition = function(circle) {
-
-            // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( rightEdge > canvas.width ) {
+             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
+             if ( rightEdge > canvas.width ) {
                 circle.x = 0;
             }
             
@@ -99,7 +99,6 @@ var init = function (window) {
             if ( lowerEdge < 0 ) {
                 circle.y = canvas.height;
             }
-           
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
