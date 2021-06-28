@@ -87,13 +87,13 @@ var init = function (window) {
              // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
              if ( rightEdge > canvas.width ) {
                 circle.x = 0;
-            }
+             }
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            if ( leftEdge < 0 ) {
+            else if ( leftEdge < 0 ) {
                 circle.x = canvas.width;
             }
-            if ( topEdge > canvas.height ) {
+            else if ( topEdge > canvas.height ) {
                 circle.y = 0;
             }
             if ( lowerEdge < 0 ) {
