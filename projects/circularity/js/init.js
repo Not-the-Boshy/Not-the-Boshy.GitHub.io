@@ -88,7 +88,6 @@ var init = function (window) {
              if ( rightEdge > canvas.width ) {
                 circle.x = 0;
              }
-            
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
             else if ( leftEdge < 0 ) {
                 circle.x = canvas.width;
@@ -96,7 +95,7 @@ var init = function (window) {
             else if ( topEdge > canvas.height ) {
                 circle.y = 0;
             }
-            if ( lowerEdge < 0 ) {
+            else if ( lowerEdge < 0 ) {
                 circle.y = canvas.height;
             }
 
