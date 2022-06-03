@@ -119,22 +119,22 @@ function moveCircle(circle){
 function bounceCircle(circle){
 
     // this bounces off the left wall
-    if (circle.x < 0){
+    if (circle.x < 10){
         circle.x -= circle.speedX;
         circle.speedX *= -1;
     }
     // this bounces off the right wall
-    else if (circle.x > boardWidth){
+    else if (circle.x > boardWidth -10){
         circle.x -= circle.speedX;
         circle.speedX *= -1;
     }
     // this bounces off the top wall
-    if (circle.y < 0){
+    if (circle.y < 5){
         circle.y -= circle.speedY;
         circle.speedY *= -1;
     }
     // this bounces off the bottom wall
-    else if (circle.y > boardHeight){
+    else if (circle.y > boardHeight -5){
         circle.y -= circle.speedY;
         circle.speedY *= -1;
     }
