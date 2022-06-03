@@ -29,7 +29,7 @@ for (var i = 0; i < maxCircles; i++){
 }
 
 // this tells the program to run the update function 60 times per second
-setInterval(update(), 1000/60);
+setInterval(update, 1000/60);
 
 
 ///////////////////////////
