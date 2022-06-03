@@ -4,7 +4,6 @@ $(document).ready(function(){
 // initialization
 /////////////////
 
-debugger;
 
 // this section initializes some variables that will be used throughout the program
 var doubleMaxSpeed = 5;
@@ -91,6 +90,7 @@ function update(){
     // loop over the circles array. We use the maxCircles variable instead of circles.length
     // to make seeing issues in the debugger slightly easier (in practice, you should use
     // circles.length, but do NOT change it here)
+    console.log("here")
     for (var i = 0; i < maxCircles; i++){
         var circle = circles[i];
 
