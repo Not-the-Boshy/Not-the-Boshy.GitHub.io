@@ -50,22 +50,24 @@ function runProgram(){
     console.log(event.which) 
     
     if (event.which === KEY.W){
-      Yvel = -5;
+      Yvel =+ -0.25;
     };
     if (event.which === KEY.A){
-      Xvel = -5;
+      Xvel =+ -0.25;
     };
     if (event.which === KEY.S){
-       Yvel = 5;
+       Yvel =+ 0.25;
     };
     if (event.which === KEY.D){
-      Xvel = 5;
+      Xvel =+ 0.25;
     };
   }
 
   function handleKeyUp(){
-    Xvel = 0;
-    Yvel = 0;
+    if (Xvel >0){
+      Xvel=- 0.05;
+    if (Yvel >0){
+      Yvel=- 0.05;
   }
 
   ////////////////////////////////////////////////////////////////////////////////
