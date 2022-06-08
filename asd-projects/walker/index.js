@@ -50,26 +50,33 @@ function runProgram(){
     console.log(event.which) 
     
     if (event.which === KEY.W){
-      Yvel =+ -0.25;
+      Yvel =+ -5;
     };
     if (event.which === KEY.A){
-      Xvel =+ -0.25;
+      Xvel =+ -5;
     };
     if (event.which === KEY.S){
-       Yvel =+ 0.25;
+       Yvel =+ 5;
     };
     if (event.which === KEY.D){
-      Xvel =+ 0.25;
+      Xvel =+ 5;
     };
   }
 
   function handleKeyUp(){
-    if (Xvel >0){
-      Xvel=- 0.05;
-    if (Yvel >0){
-      Yvel=- 0.05;
+    if (Xvel >= 0.5){
+      Xvel=- 0.5;
+    }
+    if (Xvel <= -0.5){
+      Xvel=+ 0.5;
+    }
+    if (Yvel >=0.5){
+      Yvel=- 0.5;
+    }
+    if (Yvel <= -0.5){
+      Yvel=+ 0.5;
+    }
   }
-
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
