@@ -1,6 +1,6 @@
 .square {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   position: absolute;
 }
 
@@ -10,13 +10,13 @@ body > div {
 
 #button-box {
   position: relative;
-  top: 350px;
+  top: 410px;
 }
 
 button {
   width: 120px;
   padding: 5px;
-  margin-left: 12px;
+  margin-left: 60px;
 }
 
 #apply {
