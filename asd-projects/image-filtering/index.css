@@ -10,13 +10,13 @@ body > div {
 
 #button-box {
   position: relative;
-  top: 410px;
+  top: 250px;
 }
 
 button {
-  width: 120px;
+  width: 100px;
   padding: 5px;
-  margin-left: 60px;
+  margin-left: 9px;
 }
 
 #apply {
