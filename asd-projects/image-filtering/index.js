@@ -34,20 +34,17 @@ function applyAndRender() {
 
 // TODO 1, 2 & 4: Create the applyFilter function here
 function applyFilter(){
+  var rgbString = undefined;
+  var rgbNumbers = undefined;
   for (var i = 0; i< image.length, i++;){
-    var row = image[i]
-    console.log("var i working")
 
-    for (var j = 0; j< row.length, j++;){
-      var rgbString = row[j]
-      var rgbNumbers = rgbStringToArray(rgbString)
-      rgbNumbers[RED] = 255
+    for (var j = 0; j< image[i].length, j++;){
+      rgbString = image[i][j];
+      rgbNumbers = rgbStringToArray(rgbString)
+      rgbNumbers[RED] = 200;
       rgbString = arrayToString(rgbNumbers)
-      row[j] = rgbString
-      console.log("var j working")
-
+      image[i][j] = rgbString;
     }
-
   }
 }
 

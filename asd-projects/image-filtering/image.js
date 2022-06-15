@@ -49,7 +49,7 @@ function render(element, image){
       var color = image[r][c];
       
       $("<div>").appendTo(element)
-              .addClass("square")
+      .addClass("square")
               .css('left', c * SQUARE_SIZE)
               .css('top', r * SQUARE_SIZE)
               .css('background-color', color)
