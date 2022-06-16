@@ -21,9 +21,9 @@ function resetAndRender() {
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   //breakpoint here
-  applyFilter(reddit);
-  noBackground();
-  noBackground();
+
+  noBackground(reddit);
+  noBackground(reddit);
   
 
   // do not change the below line of code
@@ -52,11 +52,10 @@ function applyFilter(filterFunction){
 }
 
 // TODO 7: Create the applyFilterNoBackground function
-function noBackground(){
-  var background = "rgb(150, 150, 150)";
+function noBackground(filterFunction){
   for (var i = 0; i< image.length; i++)
     for (var j = 0; j< image[i].length; j++){
-      if (image[i][j] != background){
+      if (image[i][j] != image[0][0]){
         rgbString = image[i][j];
         rgbNumbers = rgbStringToArray(rgbString);
         filterFunction(rgbNumbers);
@@ -69,18 +68,19 @@ function noBackground(){
 // TODO 5: Create the keepInBounds function
 function keepInBounds(number){
   return Math.max(Math.min(255,number), 0);
-  console.log(keepInBounds(-30)); // should print 0
-  console.log(keepInBounds(300)); // should print 255
-  console.log(keepInBounds(127)); // should print 127
 }
 
 // TODO 3: Create reddify function
-function reddit (tim_henson_is_cool){   // "red- it", the "reddfy" function
+function reddit (rgbNumbers){   // "red- it", the "reddfy" function
   rgbNumbers[RED] = 200;
-  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] -= 50);     // Well, I just put every filter in here.
-  keepInBounds(rgbNumbers[GREEN] += rgbNumbers[BLUE]);
 }
 
-// TODO 6: Create more filter functions        >> See "reddit" function above ^^
+// TODO 6: Create more filter functions
+function decreaseBlue (rgbNumbers){ 
+  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] -= 50);
+}
+function increaseBlueByGreen (rgbNumbers){  
+  keepInBounds(rgbNumbers[GREEN] += rgbNumbers[BLUE]);
+}
 
 // CHALLENGE code goes below here
