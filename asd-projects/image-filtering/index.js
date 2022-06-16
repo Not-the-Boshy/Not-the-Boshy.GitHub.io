@@ -10,24 +10,30 @@ $(document).ready(function () {
 //////// event handler functions are below here /////////
 /////////////////////////////////////////////////////////
 
-// this function resets the image to its original value; do not change this function
+// this function resets the image to its original value; changes the button to "Apply Filter"
 function resetAndRender() {
   reset();
   render($("#display"), image);
+
+  $("#reset").text("Apply Filter");
+  $("#reset").css("background-color", "green");
+  $("#reset").attr("id", "apply");
+
 }
 
-// this function applies the filters to the image and is where you should call
-// all of your apply functions
-function applyAndRender() {
-  // Multiple TODOs: Call your apply function(s) here
-  //breakpoint here
+// this function applies the filters to the image
 
-  noBackground(reddit);
+function applyAndRender() {
+// this function applies the filter to the image; changes the button to "Reset Filter"
+  //breakpoint here
   noBackground(reddit);
   
 
   // do not change the below line of code
   render($("#display"), image);
+  $("#apply").text("Reset Filter");
+  $("#apply").css("background-color", "red");
+  $("#apply").attr("id", "reset");
 }
 
 /////////////////////////////////////////////////////////
