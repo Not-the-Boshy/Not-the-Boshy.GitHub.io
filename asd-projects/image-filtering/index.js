@@ -21,7 +21,9 @@ function resetAndRender() {
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   //breakpoint here
-  applyFilter()
+  applyFilter(reddit);
+  applyFilter(blue);
+  applyFilter(green);
   
 
   // do not change the below line of code
@@ -33,16 +35,17 @@ function applyAndRender() {
 /////////////////////////////////////////////////////////
 
 // TODO 1, 2 & 4: Create the applyFilter function here
-function applyFilter(){
-  var rgbString = undefined;
-  var rgbNumbers = undefined;
-  for (var i = 0; i< image.length, i++;){
+var rgbString;
+var rgbNumbers;
 
-    for (var j = 0; j< image[i].length, j++;){
+function applyFilter(filterFunction){
+  for (var i = 0; i< image.length; i++){
+
+    for (var j = 0; j< image[i].length; j++){
       rgbString = image[i][j];
-      rgbNumbers = rgbStringToArray(rgbString)
-      rgbNumbers[RED] = 200;
-      rgbString = arrayToString(rgbNumbers)
+      rgbNumbers = rgbStringToArray(rgbString);
+      filterFunction(rgbNumbers);
+      rgbString = rgbArrayToString(rgbNumbers);
       image[i][j] = rgbString;
     }
   }
@@ -50,14 +53,40 @@ function applyFilter(){
 
 // TODO 7: Create the applyFilterNoBackground function
 
+function noBackground(){
+  for (var i = 0; i< image.length; i++)
+    for (var j = 0; j< image[i].length; j++){
+      if (image[i][j] === "rgb(150, 150, 150)"){
+        rgbString = image[i][j];
+        rgbNumbers = rgbStringToArray(rgbString);
+        filterFunction(rgbNumbers);
+        rgbString = rgbArrayToString(rgbNumbers);
+        image[i][j] = rgbString;
+      }
+    }
+  }
 
 // TODO 5: Create the keepInBounds function
-
+function keepInBounds(number){
+  return Math.max(Math.min(255,number), 0);
+  console.log(keepInBounds(-30)); // should print 0
+  console.log(keepInBounds(300)); // should print 255
+  console.log(keepInBounds(127)); // should print 127
+}
 
 // TODO 3: Create reddify function
-
+function reddit (tim_henson_is_cool){   // "red- it", the "reddfy" function
+  rgbNumbers[RED] = 200;
+}
 
 // TODO 6: Create more filter functions
+function blue (tim_henson_is_cool){
+  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] -= 50);
+}                                                            
+
+function green (tim_henson_is_cool){ 
+keepInBounds(rgbNumbers[GREEN] += rgbNumbers[BLUE]);
+}
 
 
 // CHALLENGE code goes below here
