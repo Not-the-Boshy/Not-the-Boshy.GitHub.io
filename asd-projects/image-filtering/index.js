@@ -77,10 +77,10 @@ function reddit (rgbNumbers){   // "red- it", the "reddfy" function
 
 // TODO 6: Create more filter functions
 function decreaseBlue (rgbNumbers){ 
-  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] -= 50);
+  rgbNumbers[BLUE] = keepInBounds(rgbNumbers[BLUE] = rgbNumbers[BLUE] - 50);
 }
 function increaseBlueByGreen (rgbNumbers){  
-  keepInBounds(rgbNumbers[GREEN] += rgbNumbers[BLUE]);
+  rgbNumbers[GREEN] = keepInBounds(rgbNumbers [GREEN] + rgbNumbers[BLUE]);
 }
 
 // CHALLENGE code goes below here
