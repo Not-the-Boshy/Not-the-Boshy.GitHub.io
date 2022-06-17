@@ -37,6 +37,8 @@ function applyAndRender() {
 // this function applies the filter to the image; changes the button to "Reset Filter"
   //breakpoint here
   noBackground(reddit);
+  noBackground(decreaseBlue);
+  noBackground(increaseBlueByGreen);
   
 
   // do not change the below line of code
