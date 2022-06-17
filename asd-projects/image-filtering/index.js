@@ -2,9 +2,19 @@
 // as soon as the page loads.
 $(document).ready(function () {
   render($("#display"), image);
-  $("#apply").on("click", applyAndRender);
-  $("#reset").on("click", resetAndRender);
+  $("#apply").on("click", onButtonClick);
+  $("#reset").on("click", onButtonClick);
 });
+
+		
+  function onButtonClick(){
+    if ($("button").text() === "Apply Filter") {  // if the button says "Apply Filter"
+      applyAndRender();
+    }
+    else {                                        // if the button says "Reset Filter"
+      resetAndRender();
+    }
+  }	
 
 /////////////////////////////////////////////////////////
 //////// event handler functions are below here /////////
