@@ -1,0 +1,55 @@
+User Story / Gameplay
+
+    Describe the gameplay:
+        The player contols a snake via WASD or Arrow Keys, directing it to eat apples/big cherries.
+        The higher the score (more apples eaten), the better.
+
+    What are the conditions when the game begins?
+        The snake starts at (0,0) unmoving. It starts moving when the player presses an arrow key.
+        An apple will spawn at a random place on the map.
+
+    Does the game have an end? If so, what are the conditions for when it ends?
+        The game will end when the player crashes the snake into itself or the wall.
+
+    What ifs will there be?
+    if touching apple, delete apple, add 1 length to snake
+    if touching wall/self, stop everything.
+
+Visual Game Components:
+
+    What are the visual game components?
+        The visual components will be the board, the snake's individual segments, and apples scattered
+        arond the map.
+
+    Which will be static?
+        The board will be static.
+
+    Which will be animated?
+        The snake will be animated.
+        While the apples will not be "animated" per se, they will still appear to teleport around the map.
+
+    What data will you need to manage each game component?
+        I'll need the:
+            - apple position        - all of the snake segment positions (stored in a complex data type)
+            - number of sections    - direction pressed
+            - current points        - (?) high score (?)
+
+Events / Logic
+  
+    What events will occur in this game? (timer events, keyboard events, clicking events?)
+        Keypresses mostly, WASD/Arrow Keys for movement.
+
+    How do those events affect the data of the program?
+        Keypresses will move the snake. This changes the coordinates of each of the snake segmwnts 
+        every frame.
+  
+    For each "event", write out the high-level logic of what will happen. It is better (and tricky) to 
+    be as specific as you can while remaining high-level!
+
+        every frame:
+            if snake not touching wall or self:
+                move forwards
+                if touching apple:
+                    points++, make snake longer
+            else:
+                reset points, position, snake length.
