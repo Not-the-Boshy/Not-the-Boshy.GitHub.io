@@ -12,8 +12,8 @@ User Story / Gameplay
         The game will end when the player crashes the snake into itself or the wall.
 
     What ifs will there be?
-    if touching apple, delete apple, add 1 length to snake
-    if touching wall/self, stop everything.
+        if touching apple, delete apple, add 1 length to snake
+        if touching wall/self, stop everything.
 
 Visual Game Components:
 
