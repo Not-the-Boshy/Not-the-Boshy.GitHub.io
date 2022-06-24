@@ -34,9 +34,9 @@ function bubbleSort(array){
 
 async function bubbleSort(array){
     for (var i=0; i< array.length; i++){                     // ITERATE over the array from i = 0 to i = length - 1
-        for (var j= array.length - 1; j <= i+1; j--){          //     ITERATE over the array from j = length - 1 to j = i + 1
-            if (array[j].value < array[j-1].value){      //         IF array[j]'s value < array[j - 1]'s value
-                swap(array[j].value, array[j-1].value);   //             swap array[j] and array[j - 1]
+        for (var j=0; j < array.length - i; j++){            //     ITERATE over the array from j = length - 1 to j = i + 1
+            if (array[i].value > array[j].value){          //         IF array[j]'s value < array[j - 1]'s value
+                swap(i, j, array);      //             swap array[j] and array[j - 1]
 
                 updateCounter(bubbleCounter);
                 await sleep();
@@ -57,9 +57,9 @@ async function quickSort(array, leftmost, rightmost){
 
 // TODO 1: Implement swap
 function swap(x, y, array){
-    var temp = array[x];
+    var temporary = array[x];
     array[x] = array[y];
-    array[y] = temp;
+    array[y] = temporary;
 
     drawSwap(x, y, array);
 }
