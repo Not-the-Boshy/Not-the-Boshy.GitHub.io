@@ -35,7 +35,7 @@ function bubbleSort(array){
 async function bubbleSort(array){
     for (var i=0; i< array.length; i++){                     // ITERATE over the array from i = 0 to i = length - 1
         for (var j=0; j < array.length - i; j++){            //     ITERATE over the array from j = length - 1 to j = i + 1
-            if (array[i].value > array[j].value){          //         IF array[j]'s value < array[j - 1]'s value
+            if (array[i].value > array[i+1].value){          //         IF array[j]'s value < array[j - 1]'s value
                 swap(i, j, array);      //             swap array[j] and array[j - 1]
 
                 updateCounter(bubbleCounter);

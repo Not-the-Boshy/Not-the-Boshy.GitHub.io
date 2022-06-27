@@ -20,7 +20,7 @@
 .subContainer {
     display: inline-block;
     width:45%;
-    border: 4px forestgreen groove;
+    border: 4px rgb(188, 175, 39) groove;
     margin-top: 1.25%;
 }
 #bubbleArea {
