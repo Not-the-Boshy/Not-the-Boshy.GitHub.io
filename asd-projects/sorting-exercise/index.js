@@ -61,7 +61,7 @@ async function quickSort(array, leftmost, rightmost){
 }
 
 // TODOs 4 & 5: Implement partition
-function partition(array, left, right){
+async function partition(array, left, right){
     var pivot = array[Math.floor((right + left)/2)].value;
     while (left < right){
         while (array[left].value < array[pivot].value){
@@ -70,7 +70,7 @@ function partition(array, left, right){
         while (array[right].value > array[pivot].value){
             right--;
         }
-        swap (array, left, right)
+        swap(left, right, array)
         updateCounter(quickCounter)
         await sleep()
     }
