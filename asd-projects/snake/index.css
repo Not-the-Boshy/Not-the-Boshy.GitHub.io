@@ -4,18 +4,24 @@ body {
 }
 
 #board {
-  width: 440px;
-  height: 440px;
+  width: 600px;
+  height: 600px;
   border: 1px solid rgb(247, 122, 122);
   background-color: black;
   position: relative;
 }
 
-#gameItem {
-  background-color: rgb(0, 0, 0);
-  width: 50px;
-  height: 50px;
-  position: absolute;
-/*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
-/*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+#snakeHead {
+  class: snakeClass
+  background-color: rgb(18, 166, 4);
+  left: 300px;
+  top: 300px;
 }
+
+.snakeClass {
+  background-color: rgb(22, 201, 5);
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
