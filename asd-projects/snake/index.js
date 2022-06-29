@@ -60,7 +60,7 @@ function runProgram(){
 
   function snakeMoveOnscreen(){
 
-    WASDDetect();
+    WASD_Detect(event);
     
     xSpeed += xVel
     ySpeed += xVel
@@ -71,7 +71,7 @@ function runProgram(){
     $("#snakeHead").css("top", YPOS);    // draw the head in the new location, positionX pixels away from the "top"
   }
 
-  function handleMovement(event) {
+  function WASD_Detect(event) {
     if (event.which === KEY.W){
       Yvel =+ -5;
     };
