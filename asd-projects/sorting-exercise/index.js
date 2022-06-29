@@ -34,9 +34,9 @@ function bubbleSort(array){
 
 async function bubbleSort(array){
     for (var i=0; i< array.length; i++){                     // ITERATE over the array from i = 0 to i = length - 1
-        for (var j = array.length - 1; j>= i + 1; j--){            //     ITERATE over the array from j = length - 1 to j = i + 1
+        for (var j = array.length - 1; j>= i + 1; j--){      //     ITERATE over the array from j = length - 1 to j = i + 1
             if (array[j].value < array[j-1].value){          //         IF array[j]'s value < array[j - 1]'s value
-                swap(j, j-1, array);                           //             swap array[j] and array[j - 1]
+                swap(array, j, j-1);                         //             swap array[j] and array[j - 1]
 
                 updateCounter(bubbleCounter);
                 await sleep();
@@ -64,13 +64,13 @@ async function quickSort(array, leftmost, rightmost){
 async function partition(array, left, right){
     var pivot = array[Math.floor((right + left)/2)].value;
     while (left < right){
-        while (array[left].value < array[pivot].value){
+        while (array[left].value < pivot){
             left++;
         }
-        while (array[right].value > array[pivot].value){
+        while (array[right].value > pivot){
             right--;
         }
-        swap(left, right, array)
+        swap(array, left, right)
         updateCounter(quickCounter)
         await sleep()
     }
@@ -78,7 +78,7 @@ async function partition(array, left, right){
 }
 
 // TODO 1: Implement swap
-function swap(x, y, array){
+function swap(array, x, y){
     var temporary = array[x];
     array[x] = array[y];
     array[y] = temporary;
