@@ -12,7 +12,8 @@ body {
 }
 
 #snakeHead {
-  class: snakeClass
+  width: 20px;
+  height: 20px;
   background-color: rgb(18, 166, 4);
   left: 300px;
   top: 300px;

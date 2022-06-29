@@ -37,7 +37,7 @@ function runProgram(){
   */
   function newFrame() {
     snakeMoveOnscreen()
-    $(document).on("keydown", handleMovement);
+    $(document).on("keydown", WASD_Detect);
     snakeCollide(something);
   }
   
@@ -48,6 +48,7 @@ function runProgram(){
     if (something.id === "apple"){
       score++
       addSnakeSegment();
+    }
                               // if id starts w/ "snake"    or      id is the board
     else if (something.id === $("div:visible[id*='snake']") || something.id === "board"){
       endGame();
@@ -59,9 +60,6 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   function snakeMoveOnscreen(){
-
-    WASD_Detect(event);
-    
     xSpeed += xVel
     ySpeed += xVel
     XPOS = xSpeed + XPOS
@@ -84,7 +82,7 @@ function runProgram(){
     if (event.which === KEY.D){
       Xvel =+ 5;
     };
-
+  }
   function endGame() {
     // stop the interval timer
     clearInterval(interval);

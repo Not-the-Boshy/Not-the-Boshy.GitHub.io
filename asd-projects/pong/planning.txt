@@ -1,0 +1,47 @@
+### User Story / Gameplay
+
+- Describe the gameplay
+    One player controls each paddle and both try to hit the ball to the other edge of the screen successfully.
+
+- What are the conditions when the game begins? 
+    Both paddles are some number of pixels away from the edges of the board at the same Y position
+    The ball will start in the middle and glide in a direction no more than 45 degrees towards a paddle.
+
+- Does the game have an end? If so, what are the conditions for when it ends?
+    Yes, when the points for one player are 7 the game will stop.
+
+- What `if`s will there be?
+
+
+### Visual Game Components:
+- What are the visual game components?
+    The paddles (2), ball, and board are visible.
+    
+- Which will be static?
+    The board will be static
+
+- Which will be animated?
+    The paddles and ball will move
+
+- What data will you need to manage each game component?
+    I'll need: positionX, positionY, speedX, and speedY, for each of the paddles (as well as the KEY 
+    object for storing magic numbers to detect the paddle movements). Point counters, and more.
+
+### Events / Logic 
+
+- What events will occur in this game? (timer events, keyboard events, clicking events?)
+    Keyboard presses will be used to move the paddles.
+
+- How do those events affect the data of the program?
+    These keyboard presses will change the CSS positioning, speedX, and velX variables.
+
+- For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
+    every frame:
+        if pointScored isn't yes:
+            on keypress, move the paddle
+            collision check
+            move the ball
+        else:
+            reset ball position to center of board
+            reset paddle Y to center of board
+            points++
