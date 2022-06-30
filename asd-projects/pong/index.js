@@ -10,10 +10,8 @@ function runProgram(){
   // Constant Variables
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
-  var speedX = 0;
-  var speedY = 0;
+
   // Game Item Objects
-  
   var KEY = {
     W: 87, S: 83,     // P1
     UP: 38, DOWN: 40. // P2
@@ -22,7 +20,7 @@ function runProgram(){
 
   function Paddle(paddleNumber, speedY){
     paddleNumber = {};
-    paddleNumber.id = $(paddleNumber).id,
+    paddleNumber.id = $(`${paddleNumber}`).id,
     console.log(paddleNumber.id),
     paddleNumber.y = Number($(".paddle").css("top").replace(/[^-\d\.]/g, '')),
     paddleNumber.speedY = speedY,
@@ -88,8 +86,27 @@ var ball = {};
     // Redraws Ball
     $(ball.id).css("left", ball.x);     // update ball Y pos onscreen
     $(ball.id).css("top", ball.x);      // update ball Y pos onscreen
+    ballCollide();
   }
 
+  function ballCollide(ball, something) {
+      // Thanks, doCollide homework!
+      ball.leftX = ball.x;
+      ball.topY = ball.y;
+      ball.rightX = ball.x + ball.width;
+      ball.bottomY = ball.y + ball.width;
+    
+      something.leftX = something.x;
+      something.topY = something.y;
+      something.rightX = something.x + something.width;
+      something.bottomY = something.y + something.width;
+    
+      // TODO: Bounce() if they are overlapping, false otherwise
+      
+      if ((ball.leftX < something.rightX) && (ball.rightX > something.leftX) && (ball.topY < something.bottomY) && (ball.bottomY > something.topY)){
+        ballBounce()
+      }
+  }
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
