@@ -1,6 +1,6 @@
 
 body {
-  background-color: darkgreen;
+  background-color: darkblue; /* green != good */
 }
 
 #board {
@@ -11,11 +11,29 @@ body {
   position: relative;
 }
 
-#gameItem {
-  background-color: teal;
-  width: 50px;
-  height: 50px;
+#ball {
+  background-color: white;
+  width: 15px;
+  height: 15px;
   position: absolute;
-/*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
-/*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+   left: 220px; 
+   top: 220px;
+   border-radius: 2px
 }
+
+.paddle {
+  background-color: white;
+  width: 20px;
+  height: 90px;
+  position: absolute;
+  top: 220px;
+  border-radius: 2px;
+}
+
+#paddleRight {
+  left: 405px;
+}
+#paddleLeft {
+  left: 15px;
+}
+
