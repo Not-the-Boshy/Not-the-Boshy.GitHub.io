@@ -15,20 +15,26 @@ function runProgram(){
   var KEY = {
     W: 87, S: 83,     // P1
     UP: 38, DOWN: 40. // P2
-  }
-  // Paddle obj (no speed X required because it just moves up and down and not side-to-side)
+  };
+  
+  var speedX = 0;
+  var speedY = 0;
+  // Paddle factory function (takes in either paddleLeft or paddleRight and the speedY)
 
   function Paddle(paddleNumber, speedY){
-    paddleNumber = {};
-    paddleNumber.id = $(`${paddleNumber}`).id,
-    console.log(paddleNumber.id),
-    paddleNumber.y = Number($(".paddle").css("top").replace(/[^-\d\.]/g, '')),
-    paddleNumber.speedY = speedY,
+    var paddleNumber = {};
+    paddleNumber.y = $(".paddle").top,
+    paddleNumber.speedY = 0
     paddleNumber.height = $(".paddle").height,
     paddleNumber.width = $(".paddle").width;
-
     return paddleNumber;
   }
+    // Sets the id and X pos of the left paddle
+    paddleLeft.id = $("#paddleLeft").id;
+    paddleLeft.x = $("#paddleLeft").left;
+       // Sets the id and X pos of the right paddle
+    paddleRight.id = $("#paddleRight").id;
+    paddleRight.x = $("#paddleRight").left;
 
   // Ball obj
 var ball = {};
