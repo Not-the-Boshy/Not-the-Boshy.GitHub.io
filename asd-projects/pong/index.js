@@ -17,42 +17,32 @@ function runProgram(){
     UP: 38, DOWN: 40. // P2
   };
   
-  var speedX = 0;
-  var speedY = 0;
   // Paddle factory function (takes in either paddleLeft or paddleRight and the speedY)
 
-  function Paddle(paddleNumber, speedY){
-    var paddleNumber = {};
-    paddleNumber.y = $(".paddle").top,
-    paddleNumber.speedY = 0
-    paddleNumber.height = $(".paddle").height,
-    paddleNumber.width = $(".paddle").width;
-    return paddleNumber;
-  }
-    // Sets the id and X pos of the left paddle
-    paddleLeft.id = $("#paddleLeft").id;
-    paddleLeft.x = $("#paddleLeft").left;
-       // Sets the id and X pos of the right paddle
-    paddleRight.id = $("#paddleRight").id;
-    paddleRight.x = $("#paddleRight").left;
-
-  // Ball obj
-var ball = {};
-  ball.x = Number($("#ball").css("right").replace(/[^-\d\.]/g, '')) + ball.speedX
-  ball.y = Number($("#ball").css("top").replace(/[^-\d\.]/g, '')) + ball.speedY
-  ball.speedX = speedX
-  ball.speedY = speedY
-  ball.height = $("#ball").height
-  ball.width = $("#ball").height
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeydown);
+  var paddleLeft = Paddlefactory("#paddleLeft");
+  var paddleRight = Paddlefactory("#paddleRight");
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
+  function Paddlefactory(id){
+    var paddleObject = {};
+    paddleObject.id = id;
+    paddleObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
+    paddleObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
+    paddleObject.height = Math.round($(id).height());
+    paddleObject.width = Math.round($(id).width());
+    paddleObject.speedX = 0
+    paddleObject.speedY = 0
+    console.log(paddleObject)
+    return paddleObject;
+  }
+  
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
@@ -65,7 +55,7 @@ var ball = {};
   Called in response to events.
   */
 
-
+  // TO BE FIXED! VV
   function handleKeydown(event){
     if (event.which === KEY.W){
       Paddle(paddleLeft, 5);
