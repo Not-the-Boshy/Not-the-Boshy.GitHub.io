@@ -22,7 +22,8 @@ function runProgram(){
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on("keydown", handleKeydown);
+
+  // Creates all gameItem objects:
   let paddleLeft = gameItemFactory("#paddleLeft");
   let paddleRight = gameItemFactory("#paddleRight");
   let ball = gameItemFactory("#ball")
@@ -31,10 +32,14 @@ function runProgram(){
     width : Math.round($("#board").width())
   }
   console.log(Board);
+
   reset();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+
+    
+  $(document).on("keydown", handleKeydown); // keyPresses seem important to the core logic
 
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
@@ -48,7 +53,6 @@ function runProgram(){
   Called in response to events.
   */
 
-  // TO BE FIXED!
   function handleKeydown(event){
     if (event.which === KEY.W){
       moveGameItem(paddleLeft, 5)
@@ -64,10 +68,10 @@ function runProgram(){
     };
   }
 
-  // moveGameItem function (takes in any gameItem, Xspeed if applicable, and speedY)
+  // moveGameItem function (takes in any gameItem, Yspeed, and Xspeed if applicable)
   function moveGameItem(gameItem, Yspeed, Xspeed){
-    gameItem.speedX = gameItem.speedX + Xspeed; // Calculate new X pos
-    gameItem.speedY = gameItem.speedY + Yspeed; // Calculate new Y pos
+    gameItem.x = gameItem.x + Xspeed; // Calculate new X pos
+    gameItem.y = gameItem.y + Yspeed; // Calculate new Y pos
     $(gameItem).css("left", gameItem.x)         // update X pos onscreen
     $(gameItem).css("top", gameItem.y)          // update Y pos onscreen
 
@@ -76,11 +80,22 @@ function runProgram(){
       reset();                                  // reset positions & speed to 0;
     }
     ballCollide(paddleRight);
+
+    if (gameItem !== "#ball"){
+      handleKeyup(gameItem)
+    }
   };
+
+  function handleKeyup(paddle){                 // Should carry over the gameItem parameter
+    paddle.speedX = 0;                          // and not be the ball.
+    paddle.speedY = 0;
+  }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////// FACTORY FUNCTIONS ////////////////////////////////////
 
   // gameItem (both paddles, ball, & board) factory:
 
@@ -97,7 +112,7 @@ function runProgram(){
     return MiscObject;
   }
 
-  function ballCollide(ball, something) {
+  function ballCollide(something) {
       // Thanks, doCollide homework!
       ball.leftX = ball.x;
       ball.topY = ball.y;
@@ -112,7 +127,7 @@ function runProgram(){
       // TODO: Bounce() if they are overlapping, false otherwise
       
       if ((ball.leftX < something.rightX) && (ball.rightX > something.leftX) && (ball.topY < something.bottomY) && (ball.bottomY > something.topY)){
-        Bounce()
+        Bounce() // Figure out later
       }
   }
   function endGame() {
