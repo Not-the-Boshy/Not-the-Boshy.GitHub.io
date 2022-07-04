@@ -12,77 +12,89 @@ function runProgram(){
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
 
   // Game Item Objects
-  var KEY = {
+  const KEY = {
     W: 87, S: 83,     // P1
     UP: 38, DOWN: 40. // P2
   };
   
-  // Paddle factory function (takes in either paddleLeft or paddleRight and the speedY)
+
 
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeydown);
-  var paddleLeft = Paddlefactory("#paddleLeft");
-  var paddleRight = Paddlefactory("#paddleRight");
-
+  let paddleLeft = gameItemFactory("#paddleLeft");
+  let paddleRight = gameItemFactory("#paddleRight");
+  let ball = gameItemFactory("#ball")
+  let Board = {
+    height : Math.round($("#board").height()), // height & width are all you really need
+    width : Math.round($("#board").width())
+  }
+  console.log(Board);
+  reset();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function Paddlefactory(id){
-    var paddleObject = {};
-    paddleObject.id = id;
-    paddleObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
-    paddleObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
-    paddleObject.height = Math.round($(id).height());
-    paddleObject.width = Math.round($(id).width());
-    paddleObject.speedX = 0
-    paddleObject.speedY = 0
-    console.log(paddleObject)
-    return paddleObject;
-  }
-  
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    moveBall();
+    moveGameItem(ball);
   }
   
   /* 
   Called in response to events.
   */
 
-  // TO BE FIXED! VV
+  // TO BE FIXED!
   function handleKeydown(event){
     if (event.which === KEY.W){
-      Paddle(paddleLeft, 5);
+      moveGameItem(paddleLeft, 5)
     };
     if (event.which === KEY.S){
-      Paddle(paddleLeft, -5);
+      moveGameItem(paddleLeft, -5)
     };
     if (event.which === KEY.UP){
-      Paddle(paddleRight, 5);
+      moveGameItem(paddleRight, 5)
     };
     if (event.which === KEY.DOWN){
-      Paddle(paddleRight, -5);
+      moveGameItem(paddleRight, -5)
     };
   }
+
+  // moveGameItem function (takes in any gameItem, Xspeed if applicable, and speedY)
+  function moveGameItem(gameItem, Yspeed, Xspeed){
+    gameItem.speedX = gameItem.speedX + Xspeed; // Calculate new X pos
+    gameItem.speedY = gameItem.speedY + Yspeed; // Calculate new Y pos
+    $(gameItem).css("left", gameItem.x)         // update X pos onscreen
+    $(gameItem).css("top", gameItem.y)          // update Y pos onscreen
+
+    if (ball.x > Board.width || ball.x < 0){    // Specifically for the ball, if it
+      points++                                  // touches the far left or far right,
+      reset();                                  // reset positions & speed to 0;
+    }
+    ballCollide(paddleRight);
+  };
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-  function moveBall(){
-    // Repositions Ball
-    ball.x += ball.speedX;              // update ball X pos var
-    ball.y += ball.speedY;              // update ball Y pos var
-    // Redraws Ball
-    $(ball.id).css("left", ball.x);     // update ball Y pos onscreen
-    $(ball.id).css("top", ball.x);      // update ball Y pos onscreen
-    ballCollide();
+  // gameItem (both paddles, ball, & board) factory:
+
+  function gameItemFactory(id){
+    var MiscObject = {}; // Paddle, Ball, and Board factory
+    MiscObject.id = id;
+    MiscObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
+    MiscObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
+    MiscObject.height = Math.round($(id).height());
+    MiscObject.width = Math.round($(id).width());
+    MiscObject.speedX = 0
+    MiscObject.speedY = 0
+    console.log(MiscObject)
+    return MiscObject;
   }
 
   function ballCollide(ball, something) {
@@ -100,7 +112,7 @@ function runProgram(){
       // TODO: Bounce() if they are overlapping, false otherwise
       
       if ((ball.leftX < something.rightX) && (ball.rightX > something.leftX) && (ball.topY < something.bottomY) && (ball.bottomY > something.topY)){
-        ballBounce()
+        Bounce()
       }
   }
   function endGame() {
@@ -109,6 +121,17 @@ function runProgram(){
 
     // turn off event handlers
     $(document).off();
+  }
+
+  function reset(){
+    paddleLeft.x = 0;
+    paddleRight.y = 0;
+    paddleLeft.speedY = 0
+    paddleRight.speedY = 0
+    ball.x = 0;
+    ball.y = 0;
+    ball.speedX = 0;
+    ball.speedY = 0;
   }
   
 }
