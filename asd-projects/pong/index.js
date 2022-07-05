@@ -17,9 +17,24 @@ function runProgram(){
     UP: 38, DOWN: 40. // P2
   };
   
+   // gameItem (both paddles, ball, & board) factory:
 
+   function gameItemFactory(id){
+    var MiscObject = {}; // Paddle & Ball factory
+    MiscObject.id = id;
+    MiscObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
+    MiscObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
+    MiscObject.height = Math.round($(id).height());
+    MiscObject.width = Math.round($(id).width());
+    MiscObject.speedX = 0
+    MiscObject.speedY = 0
+    console.log(MiscObject)
+    return MiscObject;
+  }
 
+  // ^^ Only used once when creating game item objects, so that's why I put it here.
 
+  
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
 
@@ -78,6 +93,10 @@ function runProgram(){
     if (ball.x > Board.width || ball.x < 0){    // Specifically for the ball, if it
       points++                                  // touches the far left or far right,
       reset();                                  // reset positions & speed to 0;
+
+      if (points === 5){
+        endGame()
+      }
     }
     ballCollide(paddleRight);
 
@@ -98,21 +117,6 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
     ////////////////////////// FACTORY FUNCTIONS ////////////////////////////////////
-
-  // gameItem (both paddles, ball, & board) factory:
-
-  function gameItemFactory(id){
-    var MiscObject = {}; // Paddle & Ball factory
-    MiscObject.id = id;
-    MiscObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
-    MiscObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
-    MiscObject.height = Math.round($(id).height());
-    MiscObject.width = Math.round($(id).width());
-    MiscObject.speedX = 0
-    MiscObject.speedY = 0
-    console.log(MiscObject)
-    return MiscObject;
-  }
 
   function ballCollide(something) {
       // Thanks, doCollide homework!
