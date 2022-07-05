@@ -11,7 +11,10 @@
     Yes, when the points for one player are 7 the game will stop.
 
 - What `if`s will there be?
-
+    if ball is touching wall or paddle and is not touching left/right edges:
+        bounce
+    else: 
+        reset
 
 ### Visual Game Components:
 - What are the visual game components?
@@ -36,12 +39,17 @@
     These keyboard presses will change the CSS positioning, speedX, and velX variables.
 
 - For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
+    
+    on keypress, move the paddles
+    on keyup, stop the paddle movement
+    
     every frame:
         if pointScored isn't yes:
-            on keypress, move the paddle
             collision check
             move the ball
         else:
             reset ball position to center of board
             reset paddle Y to center of board
             points++
+            if points are 7:
+                stop game

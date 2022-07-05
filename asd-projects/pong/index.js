@@ -17,6 +17,17 @@ function runProgram(){
     UP: 38, DOWN: 40. // P2
   };
   
+  let paddleLeft = gameItemFactory("#paddleLeft");
+  let paddleRight = gameItemFactory("#paddleRight");
+  let ball = gameItemFactory("#ball");
+  let Board = {
+    height : Math.round($("#board").height()), // height & width are all you really need
+    width : Math.round($("#board").width())
+  }
+  console.log(Board);
+
+  var points = 0;
+
    // gameItem (both paddles, ball, & board) factory:
 
    function gameItemFactory(id){
@@ -37,16 +48,6 @@ function runProgram(){
   
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-
-  // Creates all gameItem objects:
-  let paddleLeft = gameItemFactory("#paddleLeft");
-  let paddleRight = gameItemFactory("#paddleRight");
-  let ball = gameItemFactory("#ball");
-  let Board = {
-    height : Math.round($("#board").height()), // height & width are all you really need
-    width : Math.round($("#board").width())
-  }
-  console.log(Board);
 
   reset();
   ////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +95,7 @@ function runProgram(){
       points++                                  // touches the far left or far right,
       reset();                                  // reset positions & speed to 0;
 
-      if (points === 5){
+      if (points === 7){
         endGame()
       }
     }
