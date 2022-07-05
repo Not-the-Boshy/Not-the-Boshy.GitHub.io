@@ -26,7 +26,7 @@ function runProgram(){
   // Creates all gameItem objects:
   let paddleLeft = gameItemFactory("#paddleLeft");
   let paddleRight = gameItemFactory("#paddleRight");
-  let ball = gameItemFactory("#ball")
+  let ball = gameItemFactory("#ball");
   let Board = {
     height : Math.round($("#board").height()), // height & width are all you really need
     width : Math.round($("#board").width())
@@ -40,7 +40,7 @@ function runProgram(){
 
     
   $(document).on("keydown", handleKeydown); // keyPresses seem important to the core logic
-
+  $(document).on("keyup", handleKeyup);
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
@@ -70,8 +70,8 @@ function runProgram(){
 
   // moveGameItem function (takes in any gameItem, Yspeed, and Xspeed if applicable)
   function moveGameItem(gameItem, Yspeed, Xspeed){
-    gameItem.x = gameItem.x + Xspeed; // Calculate new X pos
-    gameItem.y = gameItem.y + Yspeed; // Calculate new Y pos
+    gameItem.x = gameItem.x + Xspeed;           // Calculate new X pos
+    gameItem.y = gameItem.y + Yspeed;           // Calculate new Y pos
     $(gameItem).css("left", gameItem.x)         // update X pos onscreen
     $(gameItem).css("top", gameItem.y)          // update Y pos onscreen
 
@@ -86,9 +86,11 @@ function runProgram(){
     }
   };
 
-  function handleKeyup(paddle){                 // Should carry over the gameItem parameter
-    paddle.speedX = 0;                          // and not be the ball.
-    paddle.speedY = 0;
+  function handleKeyup(){    
+    paddleLeft.speedX = 0;
+    paddleLeft.speedY = 0;
+    paddleRight.speedX = 0;
+    paddleRight.speedY = 0;
   }
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +102,7 @@ function runProgram(){
   // gameItem (both paddles, ball, & board) factory:
 
   function gameItemFactory(id){
-    var MiscObject = {}; // Paddle, Ball, and Board factory
+    var MiscObject = {}; // Paddle & Ball factory
     MiscObject.id = id;
     MiscObject.x = Math.round(Number($(id).css('left').replace(/[^-\d\.]/g, '')));
     MiscObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
