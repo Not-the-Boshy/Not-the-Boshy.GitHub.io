@@ -28,7 +28,7 @@ function runProgram(){
 
   var points = 0;
 
-   // gameItem (both paddles, ball, & board) factory:
+   // gameItem (both paddles and ball) factory:
 
    function gameItemFactory(id){
     var MiscObject = {}; // Paddle & Ball factory
@@ -44,8 +44,8 @@ function runProgram(){
   }
 
   // ^^ Only used once when creating game item objects, so that's why I put it here.
+  //    Plus, I don't need to scroll all the way down to the helper functions to look at the code.
 
-  
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
 
@@ -53,14 +53,15 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
     
   $(document).on("keydown", handleKeydown); // keyPresses seem important to the core logic
   $(document).on("keyup", handleKeyup);
+
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
+ 
   function newFrame() {
     moveGameItem(ball);
   }
@@ -117,8 +118,6 @@ function runProgram(){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////// FACTORY FUNCTIONS ////////////////////////////////////
-
   function ballCollide(something) {
       // Thanks, doCollide homework!
       ball.leftX = ball.x;
@@ -137,13 +136,6 @@ function runProgram(){
         Bounce() // Figure out later
       }
   }
-  function endGame() {
-    // stop the interval timer
-    clearInterval(interval);
-
-    // turn off event handlers
-    $(document).off();
-  }
 
   function reset(){
     paddleLeft.x = 0;
@@ -155,5 +147,12 @@ function runProgram(){
     ball.speedX = 0;
     ball.speedY = 0;
   }
-  
+
+  function endGame() {
+    // stop the interval timer
+    clearInterval(interval);
+
+    // turn off event handlers
+    $(document).off();
+  }
 }
