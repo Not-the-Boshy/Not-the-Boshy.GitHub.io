@@ -15,7 +15,5 @@ let likeCounter = 0;
 function likePhoto(id){
     likeCounter++
     console.log("Photo liked " + likeCounter + " times!");
-    document.getElementById(id).innerHTML = likeCounter;
-    $("button").text("Likes: " + likeCounter);
+    $(id).text("Likes: " + likeCounter);
 }
-
