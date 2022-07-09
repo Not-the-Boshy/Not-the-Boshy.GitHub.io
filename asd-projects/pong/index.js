@@ -17,6 +17,7 @@ function runProgram(){
     UP: 38, DOWN: 40. // P2
   };
   
+  // Game Items
   let paddleLeft = gameItemFactory("#paddleLeft");
   let paddleRight = gameItemFactory("#paddleRight");
   let ball = gameItemFactory("#ball");
@@ -26,7 +27,15 @@ function runProgram(){
   }
   console.log(Board);
 
-  var points = 0;
+  // Score Items
+  let scoreLeft= {
+    points: 0,
+  };
+  let scoreRight= {
+    points: 0,
+  };
+  $("scoreLeft").append($("<p>").text(scoreLeft.points));
+  $("scoreRight").append($("<p>").text(scoreRight.points));
 
    // gameItem (both paddles and ball) factory:
 
@@ -48,7 +57,6 @@ function runProgram(){
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-
   reset();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -92,14 +100,15 @@ function runProgram(){
     $(gameItem).css("left", gameItem.x)         // update X pos onscreen
     $(gameItem).css("top", gameItem.y)          // update Y pos onscreen
 
-    if (ball.x > Board.width || ball.x < 0){    // Specifically for the ball, if it
-      points++                                  // touches the far left or far right,
-      reset();                                  // reset positions & speed to 0;
-
-      if (points === 7){
-        endGame()
-      }
+    if (ball.x > Board.width || ball.x < 0){
+    updateScore();
+    reset();
     }
+
+    if (paddleRight.points === 7 || paddleLeft.points === 7){
+      endGame()
+    }
+  }
     ballCollide(paddleRight);
 
     if (gameItem !== "#ball"){
@@ -137,11 +146,23 @@ function runProgram(){
       }
   }
 
+  function updateScore(){
+      if (ball.x > Board.width){
+        scoreLeft.points = scoreLeft.points + 1
+        $("#scoreLeft").text(scoreLeft.points);
+      }
+      if (ball.x < 0){
+        scoreRight.points = scoreRight.points + 1
+        $("#scoreRight").text(scoreRight.points);
+
+
+  }
+
   function reset(){
     paddleLeft.x = 0;
     paddleRight.y = 0;
-    paddleLeft.speedY = 0
-    paddleRight.speedY = 0
+    paddleLeft.speedY = 0;
+    paddleRight.speedY = 0;
     ball.x = 0;
     ball.y = 0;
     ball.speedX = 0;
