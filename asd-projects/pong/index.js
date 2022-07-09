@@ -34,8 +34,8 @@ function runProgram(){
   let scoreRight= {
     points: 0,
   };
-  $("scoreLeft").append($("<p>").text(scoreLeft.points));
-  $("scoreRight").append($("<p>").text(scoreRight.points));
+  $("#scoreLeft").append($("<p>").text(scoreLeft.points));
+  $("#scoreRight").append($("<p>").text(scoreRight.points));
 
    // gameItem (both paddles and ball) factory:
 
@@ -57,7 +57,7 @@ function runProgram(){
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  reset();
+  Reset();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ function runProgram(){
 
   }
 
-  function reset(){
+  function Reset(){
     paddleLeft.x = 0;
     paddleRight.y = 0;
     paddleLeft.speedY = 0;
