@@ -24,7 +24,7 @@ function runProgram() {
   let Board = {
     height: Math.round($("#board").height()), // height & width are all you really need
     width: Math.round($("#board").width())
-  }
+  };
   console.log(Board);
 
   // Score Items
@@ -46,9 +46,9 @@ function runProgram() {
     MiscObject.y = Math.round(Number($(id).css('top').replace(/[^-\d\.]/g, '')));
     MiscObject.height = Math.round($(id).height());
     MiscObject.width = Math.round($(id).width());
-    MiscObject.speedX = 0
-    MiscObject.speedY = 0
-    console.log(MiscObject)
+    MiscObject.speedX = 0;
+    MiscObject.speedY = 0;
+    console.log(MiscObject);
     return MiscObject;
   }
 
@@ -57,10 +57,18 @@ function runProgram() {
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  Reset();
   let randomNum = (Math.random() * 4 + 5) * (Math.random() > 0.5 ? -1 : 1);
-  ball.speedX = randomNum
-  ball.speedY = randomNum
+  function Reset() {
+      paddleLeft.x = 0;
+      paddleRight.y = 0;
+      paddleLeft.speedY = 0;
+      paddleRight.speedY = 0;
+      ball.x = 0;
+      ball.y = 0;
+      ball.speedX = randomNum
+      ball.speedY = randomNum
+    }
+  Reset();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -100,8 +108,8 @@ function runProgram() {
   function moveGameItem(gameItem, speedY, speedX) {
     gameItem.x = gameItem.x + speedX;           // Calculate new X pos
     gameItem.y = gameItem.y + speedY;           // Calculate new Y pos
-    $(gameItem).css("left", gameItem.x)         // update X pos onscreen
-    $(gameItem).css("top", gameItem.y)          // update Y pos onscreen
+    $(gameItem).css("left", gameItem.x);         // update X pos onscreen
+    $(gameItem).css("top", gameItem.y);          // update Y pos onscreen
 
     if (ball.x > Board.width || ball.x < 0) {    // Ball scoring
       updateScore();
@@ -112,13 +120,12 @@ function runProgram() {
       endGame()
     }
 
-    if (gameItem !== "#ball") {
+    if (gameItem.id !== "#ball") {
       if (gameItem.y < 0 || gameItem.y > Board.height) {   // Paddle should stop if it is beyond the vertical bounds of the board
         gameItem.speedY = 0;
         // Thanks, Image Filtering keepInBounds function!
-        gameItem.y = Math.max(Math.min(Board.height, gameItem.y, Board.x));
+        gameItem.y = Math.max(Math.min(Board.height, gameItem.y), Board.x);
       }
-      handleKeyup(gameItem)
     }
   };
 
@@ -148,10 +155,10 @@ function runProgram() {
     // Bounce if they are overlapping, do nothing otherwise
     // This long line right below just checks if the ball is colliding at all
     if ((ball.leftX < something.rightX) && (ball.rightX > something.leftX) && (ball.topY < something.bottomY) && (ball.bottomY > something.topY)) {
-      if (Math.max(Math.abs(ball.speedX)), Math.abs((ball.speedY)) = ball.speedX) { //Decides which magnitude is greater
+      if (Math.max(Math.abs(ball.speedX)), Math.abs((ball.speedY)) === ball.speedX) { //Decides which magnitude is greater
         ball.speedY = ball.speedY * -1
       }
-      else if (Math.max(Math.abs(ball.speedX)), Math.abs((ball.speedY)) = ball.speedY) {
+      else if (Math.max(Math.abs(ball.speedX)), Math.abs((ball.speedY)) === ball.speedY) {
         ball.speedX = ball.speedX * -1
       }
       else if (Math.abs(ball.speedX) = Math.abs(ball.speedY)) {
@@ -171,21 +178,19 @@ function runProgram() {
       $("#scoreRight").text(scoreRight.points);
     }
 
-    function Reset() {
-      paddleLeft.x = 0;
-      paddleRight.y = 0;
-      paddleLeft.speedY = 0;
-      paddleRight.speedY = 0;
-      ball.x = 0;
-      ball.y = 0;
-      ball.speedX = randomNum
-      ball.speedY = randomNum
-    }
-
     function endGame() {
       // stops the interval timer
       clearInterval(interval);
-
+      
+      if (scoreLeft.points > scoreRight.points){
+        $("#scoreRight").attr("color", "brightgreen")   // Makes one score red (loss) and one green (win)
+        $("#scoreLeft").attr("color", "red")
+      }
+      if (scoreRight.points > scoreLeft.points){
+        $("#scoreLeft").attr("color", "brightgreen")
+        $("#scoreRight").attr("color", "red")
+      }
+      
       // turns off event handlers
       $(document).off();
     }
