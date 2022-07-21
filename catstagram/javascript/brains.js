@@ -17,3 +17,7 @@ function likePhoto(id){
     console.log("Photo liked " + likeCounter + " times!");
     $(id).text("Likes: " + likeCounter);
 }
+
+function expandInfo (id){
+    
+}

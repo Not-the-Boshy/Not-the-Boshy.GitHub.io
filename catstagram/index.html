@@ -20,6 +20,17 @@
     <link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'>
 
     <style>
+    
+    /* Image Zoom on Hover, thanks https://stackoverflow.com/questions/29815813/zoom-images-smoothly-with-css */
+    .zoom
+    {
+        transition: transform 1s;
+    }
+
+    .zoom:hover { 
+        transform: scale(1.05); 
+    }
+
     h1, h5 {
         font-family: "Bad Script";
     };
@@ -34,6 +45,7 @@
     }
     img {
         width: 500px;
+        height: 700px;
     }
     .pic-container {
         display: flex;
@@ -49,6 +61,26 @@
     .button {
         margin-bottom: 70px;
     }
+
+    .taskbox {
+    width: 230px;
+    padding: 15px;
+    left: 100%;
+    position: absolute;
+    top: 25px;
+    background-color: black;
+    color: white;
+    font-family: courier new;
+    font-size: 20px;
+    animation: slide-from-right .4s 2s forwards; /* x = 2s */
+    }
+
+    @keyframes slide-from-right {
+    to {
+        left: calc(100% - 230px - 30px - 25px);
+        /* 100% = total width, 230px = element width, 30px = left and right padding, 25px = distance from right border */
+    }
+}
    
     </style>
 </head>
@@ -69,7 +101,7 @@
     <div class = "pic-container">
 
         <!-- Photo 1 -->
-        <img src = "https://preview.redd.it/7che0p50et891.jpg?width=640&crop=smart&auto=webp&s=285a15c74ba78b55b5d6588b195d870dacc843f8">
+        <img src = "https://preview.redd.it/7che0p50et891.jpg?width=640&crop=smart&auto=webp&s=285a15c74ba78b55b5d6588b195d870dacc843f8" id = 'image1' class = 'zoom' onClick = "expandInfo('image1')">
         <div id="likeCount1"></div>
         <h3 class = "desc"> Pyrisma (Machinewise)</h3>
         <p class = "author">Photo by Brandon Baker</p> 
@@ -77,7 +109,7 @@
 
 
         <!-- Photo 2 -->
-        <img src = "https://preview.redd.it/gjmhto5gfd891.jpg?width=640&crop=smart&auto=webp&s=c1518e62dec4ef89123832f609c65d9f663c7ed3">
+        <img src = "https://preview.redd.it/gjmhto5gfd891.jpg?width=640&crop=smart&auto=webp&s=c1518e62dec4ef89123832f609c65d9f663c7ed3" class = "zoom">
         <div id="likeCount2"></div>
         <h3 class = "desc"> Winter Red Nautilus (Squid Industries)</h3>
         <p class = "author">Photo by DatedBalisong</p>
@@ -85,7 +117,7 @@
          
         
         <!-- Photo 3 -->
-        <img src = "https://preview.redd.it/4p4w2qb48b891.jpg?width=640&crop=smart&auto=webp&s=2718fae15e5aa67dea5a5d58cbf921e112468a19">
+        <img src = "https://preview.redd.it/4p4w2qb48b891.jpg?width=640&crop=smart&auto=webp&s=2718fae15e5aa67dea5a5d58cbf921e112468a19" class = "zoom">
         <div id="likeCount3"></div>
         <h3 class = "desc"> Modified Replicant (BRS) with JTDesign orange/black scales</h3>
         <p class = "author">Photo by venquii</p>
@@ -93,7 +125,7 @@
         
 
         <!-- Photo 4 -->
-        <img src = "https://preview.redd.it/twhlhkw9jv691.jpg?width=640&crop=smart&auto=webp&s=9d1cc71a24d830695cddd64fc581385d69b32bce">
+        <img src = "https://preview.redd.it/twhlhkw9jv691.jpg?width=640&crop=smart&auto=webp&s=9d1cc71a24d830695cddd64fc581385d69b32bce" class = "zoom">
         <div id="likeCount4"></div>
         <h3 class = "desc"> Mako v4.5 (Squid Industries) in its natural habitat!</h3>
         <p class = "author">Photo by finnrisa</p>
@@ -101,12 +133,68 @@
         
 
         <!-- Photo 5 -->
-        <img src = "https://preview.redd.it/blior5cr07591.jpg?width=640&crop=smart&auto=webp&s=2badb8ce3aad231d41a43fefdca195c22a87b269">
+        <img src = "https://preview.redd.it/blior5cr07591.jpg?width=640&crop=smart&auto=webp&s=2badb8ce3aad231d41a43fefdca195c22a87b269" class = "zoom">
         <div id = likeCound5></div>
         <h3 class = "desc"> Triton (Squid Industries) with handmade blade</h3>
         <p class = "author"> Photo by ag0ra5</p>
         <button id = "likeBtn5" class = "button" onClick = "likePhoto('likeBtn5')">Like</button>
-        
+
+        <!-- Photo 6 -->
+        <img src = "https://preview.redd.it/vnbu9p8sgw491.jpg?width=1848&format=pjpg&auto=webp&s=f3a43fb82f10623d2e233a6035d94a481bbfe6b4" class = "zoom">
+        <div id = likeCound6></div>
+        <h3 class = "desc"> Alien (Stitched Steel)</h3>
+        <p class = "author"> Photo by WeepiestSeeker4</p>
+        <button id = "likeBtn6" class = "button" onClick = "likePhoto('likeBtn6')">Like</button>
+
+        <!-- Photo 7 -->
+        <img src = "https://i.redd.it/67g0qss1ma491.jpg" class = "zoom">
+        <div id = likeCound7></div>
+        <h3 class = "desc"> Symphony (Dante Concept)</h3>
+        <p class = "author"> Photo by Tachyonic</p>
+        <button id = "likeBtn7" class = "button" onClick = "likePhoto('likeBtn7')">Like</button>
+
+        <!-- Photo 8 -->
+        <img src = "https://i.redd.it/ne44bs2lk4191.jpg" class = "zoom">
+        <div id = likeCound8></div>
+        <h3 class = "desc"> Serif (Machinewise) with rainbow anodization</h3>
+        <p class = "author"> Photo by Jeremyjhub</p>
+        <button id = "likeBtn8" class = "button" onClick = "likePhoto('likeBtn8')">Like</button>
+
+        <!-- Photo 9 -->
+        <img src = 'https://i.redd.it/5c1ao3eajnz81.jpg' class = "zoom">
+        <div id = likeCound9></div>
+        <h3 class = "desc"> Maryn (Machinewise)</h3>
+        <p class = "author"> Photo by BuffaloDingus</p>
+        <button id = "likeBtn9" class = "button" onClick = "likePhoto('likeBtn9')">Like</button>
+
+        <!-- Photo 10 -->
+        <img src = "https://preview.redd.it/yndfsjymc4t81.jpg?width=2055&format=pjpg&auto=webp&s=5407af607ef0bc759311a24d7381855f8aa1325d" class = "zoom">
+        <div id = likeCound10></div>
+        <h3 class = "desc"> Completely customized Replicant (Benchmade) with glow-in-the-dark handles </h3>
+        <p class = "author"> Photo by TateP23</p>
+        <button id = "likeBtn10" class = "button" onClick = "likePhoto('likeBtn10')">Like</button>
+
+        <!-- Photo 11 -->
+        <img src = "https://i.redd.it/0u8qlt94prr81.jpg" class = "zoom">
+        <div id = likeCound11></div>
+        <h3 class = "desc"> Paradigm (Stitched Steel) </h3>
+        <p class = "author"> Photo by WeepiestSeeker4</p>
+        <button id = "likeBtn10" class = "button" onClick = "likePhoto('likeBtn10')">Like</button>
+
+        <!-- Photo 12 -->
+        <img src = "https://preview.redd.it/x10ghmnhema91.jpg?width=1440&format=pjpg&auto=webp&s=5ca2f89b8c8282a66049be89747523ad886ed063" class = "zoom">
+        <div id = likeCound12></div>
+        <h3 class = "desc"> Krake Raken (Squid Industries) </h3>
+        <p class = "author"> Photo by -c3lestial-</p>
+        <button id = "likeBtn12" class = "button" onClick = "likePhoto('likeBtn12')">Like</button>
+
+        <!-- Photo 13 -->
+        <img src = "https://i.redd.it/u8ah70vx7v991.jpg" class = "zoom">
+        <div id = likeCound13></div>
+        <h3 class = "desc"> Krake Raken (Squid Industries) with Hourglass Blade </h3>
+        <p class = "author"> Photo by BuffaloDingus</p>
+        <button id = "likeBtn12" class = "button" onClick = "likePhoto('likeBtn12')">Like</button>
+
     </div>
 </body>
 
